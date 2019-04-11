@@ -73,7 +73,7 @@
     mounted() {
     },
     created() {
-      this.getAdminState()
+      this.getAdminState();
       setTimeout(() => {
         this.getLoading();
       }, 1000);

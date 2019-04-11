@@ -88,6 +88,12 @@
               <div class="containerTopDiv">
                 <el-button type="primary" @click="doSearchData()">查询曲线</el-button>
               </div>
+              <div class="containerTopDiv">
+                <el-button type="success"  @click="addEcharts">放大曲线</el-button>
+              </div>
+              <div class="containerTopDiv">
+                <el-button type="warning" @click="reduceEcharts">缩小曲线</el-button>
+              </div>
             </div>
             <div class="containerTop2"  v-if="this.topShow==='2'">
               <div class="containerTopDiv2">
@@ -114,8 +120,14 @@
               <div class="containerTopDiv2">
                 <el-button type="danger" @click="modalClose">关闭</el-button>
               </div>
+              <div class="containerTopDiv2">
+                <el-button type="success"  @click="addEcharts">放大</el-button>
+              </div>
+              <div class="containerTopDiv2">
+                <el-button type="warning" @click="reduceEcharts">缩小</el-button>
+              </div>
             </div>
-            <div class="containerBottom">
+            <div class="containerBottom" id="panel">
               <div id="dataBar" :style="{width: '100%', height: '300px'}"></div>
             </div>
           </div>
@@ -177,7 +189,9 @@
         xData: [],
         yData: [],
         startTime: "",
-        endTime: ""
+        endTime: "",
+
+        size:300,
 
       }
 
@@ -189,7 +203,11 @@
       this.bianse();
       this.hp()
     },
-    computed: {},
+    computed: {
+      style: function () {
+        return "width:"+this.width+"px;height:"+this.height+"px"
+      }
+    },
     created() {
       //检索用户状态
       this.getAdminState();
@@ -219,6 +237,7 @@
           }));
       },
 
+      //监控横屏
       hp() {
         const that = this;
         window.addEventListener('orientationchange', function () {
@@ -508,6 +527,23 @@
         }
       },
 
+      //放大趋势图
+      addEcharts(){
+        if(this.size<2000){
+          this.size=this.size+50;}
+        else{
+          this.size=2000;
+        }
+      },
+      //缩小趋势图
+      reduceEcharts(){
+        if(this.size>300){
+          this.size=this.size-50;}
+        else{
+          this.size=300;
+        }
+
+      },
 
       //改变下拉显示数据
       changeSelect() {
@@ -667,6 +703,61 @@
               }
             ]
           });
+          this.$watch("size",function(newVal, oldVal){
+            var dom=document.getElementById('panel');
+            dom.innerHTML='<div id="dataBar" style="width:'+newVal+'px;height:'+newVal+'px"></div>';
+            let myChart = this.$echarts.init(document.getElementById('dataBar'));
+            myChart.setOption({
+              title: {
+                text: this.name,
+                subtext: '实时显示'
+              },
+              tooltip: {
+                trigger: 'axis'
+              },
+              legend: {
+                data: []
+              },
+              grid: {
+                x: 50,
+                borderWidth: 1,
+                x2: 10,
+                y2: 30
+              },
+
+              toolbox: {
+                show: true,
+                feature: {
+                  mark: {show: true},
+                  magicType: {show: true, type: ['line', 'bar']},
+                  restore: {show: true},
+                }
+              },
+              calculable: true,
+              xAxis: [
+                {
+                  type: 'category',
+                  boundaryGap: false,
+                  data: this.xData
+                }
+              ],
+              yAxis: [
+                {
+                  max: this.yMax,
+                  min: this.yMin,
+                  type: 'value'
+                }
+              ],
+              series: [
+                {
+                  name: '当前时间段数据',
+                  type: 'line',
+                  smooth: true,
+                  data: this.yData
+                }
+              ]
+            });
+          })
         })
       },
 
@@ -768,15 +859,15 @@
             align-items: center;
             justify-content: center;
             margin-top: 1%;
-            margin-left: 2%;
+            margin-left: 1%;
             .el-button {
               display: flex;
               align-items: center;
               justify-content: center;
-              width: 60px;
+              width:40px;
               height: 35px;
-              margin-right: 10%;
-              margin-left: 10%;
+              margin-right: 5%;
+              margin-left: 5%;
             }
           }
         }
