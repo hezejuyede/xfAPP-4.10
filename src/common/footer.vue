@@ -19,7 +19,7 @@
         {"icon": "iconfont icon-shujufenxi", "text": "数据", "url": "/RealTimeData"},
         {"icon": "iconfont icon-report", "text": "报表", "url": "/ReportForm"},
         {"icon": "iconfont icon-baojing", "text": "报警", "url": "/AlarmList"},
-        {"icon": "iconfont icon-paibanguanli", "text": "排班", "url": "/PDIDiagram"},
+        {"icon": "iconfont icon-paibanguanli", "text": "排班", "url": "/workSchedule"},
       ]
     }
   },

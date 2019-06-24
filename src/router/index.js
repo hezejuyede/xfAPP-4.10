@@ -9,6 +9,7 @@ import UserRegister from '../components/login/userRegister'
 import ReportForm from '../components/reportForm'
 import PDIDiagram from '../components/PDIDiagram'
 import AlarmList from '../components/alarmLsit'
+import workSchedule from '../components/workSchedule.vue'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/AlarmList',
       name: 'AlarmList',
       component: AlarmList
+    },
+    {
+      path: '/workSchedule',
+      name: 'workSchedule',
+      component: workSchedule
     }
   ]
 })
