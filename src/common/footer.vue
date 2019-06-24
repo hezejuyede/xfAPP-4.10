@@ -18,7 +18,7 @@
         {"icon": "iconfont icon-xiazai45", "text": "首页", "url": "/"},
         {"icon": "iconfont icon-shujufenxi", "text": "数据", "url": "/RealTimeData"},
         {"icon": "iconfont icon-report", "text": "报表", "url": "/ReportForm"},
-        {"icon": "iconfont icon-liuchengtu", "text": "流程图", "url": "/PDIDiagram"}
+        {"icon": "iconfont icon-baojing", "text": "报警", "url": "/PDIDiagram"}
       ]
     }
   },
@@ -74,7 +74,7 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
-      .icon-report,.icon-shujufenxi ,.icon-liuchengtu ,.icon-xiazai45{
+      .icon-report,.icon-shujufenxi ,.icon-baojing ,.icon-xiazai45{
         font-size: @font-size-large-xxx;
       }
        span{

@@ -23,6 +23,9 @@
           <div class="swiper-scrollbar" slot="scrollbar"></div>
         </swiper>
       </div>
+      <div class="noticeDiv">
+        公告：
+      </div>
       <div class="navigation">
         <div class="IconTemplate" v-for="(item , index) in iconData" @click="goToPage(index,item.url)">
           <i :class=" item.icon"></i>
@@ -30,7 +33,7 @@
         </div>
       </div>
     </main>
-    <footer-view></footer-view>
+   <!-- <footer-view></footer-view>-->
     <div class="loading-container" v-show="!img.length">
       <loading></loading>
     </div>
@@ -49,9 +52,12 @@
       return {
         img: '',
         iconData: [
-          {"icon": "iconfont icon-huabanfuben", "text": "实时数据", "url": "/RealTimeData"},
-          {"icon": "iconfont icon-tongjibaobiao", "text": "实时报表", "url": "/ReportForm"},
-          {"icon": "iconfont icon-Processdefinition", "text": "流程图形", "url": "/PDIDiagram"},
+          {"icon": "iconfont icon-1jituan", "text": "兴发集团", "url": "/RealTimeData"},
+          {"icon": "iconfont icon-zu", "text": "片碱报表", "url": "/ReportForm"},
+          {"icon": "iconfont icon-gaoduanhuagong", "text": "漂粉精一线报表", "url": "/PDIDiagram"},
+          {"icon": "iconfont icon-jichuhuagong", "text": "漂粉精二线报表", "url": "/PDIDiagram"},
+          {"icon": "iconfont icon-paibanguanli", "text": "排班表", "url": "/PDIDiagram"},
+          {"icon": "iconfont icon-baojing", "text": "报警", "url": "/PDIDiagram"},
         ],
         bannerImg: [
           {"img": require("../assets/img/1.jpg")},
@@ -111,6 +117,8 @@
   .index {
     width: 100%;
     height: 100%;
+    margin-bottom: 120px;
+    background-color: yellow;
     header{
       height: 80px;
       background-color: @color-white;
@@ -146,8 +154,9 @@
       margin-top: 20px;
       .IconTemplate {
         float: left;
-        width: 30%;
+        width: 45%;
         height: 40%;
+        background-color: #d93f30;
         margin-bottom: 5%;
         margin-left: 3%;
         display: flex;
@@ -155,64 +164,76 @@
         justify-content: center;
         flex-direction: column;
         cursor: pointer;
-        .icon-huabanfuben {
+        .icon-1jituan {
           display: block;
           background-color: #F56C6C;
           color: @color-white;
           border-radius: 20%;
           width: 60px;
-          height: 60px;
+          height:60px;
           line-height: 60px;
           font-size: 300%;
           text-align: center;
         }
-        .icon-tongjibaobiao {
+        .icon-zu {
           display: block;
           background-color: @color-bg-lan;
           color: @color-white;
           border-radius: 20%;
           width: 60px;
-          height: 60px;
+          height:60px;
           line-height: 60px;
           font-size: 300%;
           text-align: center;
         }
-        .icon-Processdefinition {
+        .icon-gaoduanhuagong {
           display: block;
           background-color: @color-bg-cs;
           color: @color-white;
           border-radius: 20%;
           width: 60px;
-          height: 60px;
+          height:60px;
           line-height: 60px;
           font-size: 300%;
           text-align: center;
         }
-        .icon-zanting {
+        .icon-jichuhuagong {
           display: block;
           background-color: #409EFF;
           color: @color-white;
           border-radius: 20%;
           width: 60px;
-          height: 60px;
+          height:60px;
           line-height: 60px;
           font-size: 300%;
           text-align: center;
         }
-        .icon-wancheng {
+        .icon-paibanguanli {
           display: block;
           background-color: #67C23A;
           color: @color-white;
           border-radius: 20%;
           width: 60px;
-          height: 60px;
+          height:60px;
+          line-height: 60px;
+          font-size: 300%;
+          text-align: center;
+        }
+        .icon-baojing {
+          display: block;
+          background-color:@color-bg-ch;
+          color: @color-white;
+          border-radius: 20%;
+          width: 60px;
+          height:60px;
           line-height: 60px;
           font-size: 300%;
           text-align: center;
         }
         span {
           margin-top: 5%;
-          color: #909399
+          color: #909399;
+          font-size: @font-size-large;
         }
       }
     }
