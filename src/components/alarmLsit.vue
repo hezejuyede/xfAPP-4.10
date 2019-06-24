@@ -225,7 +225,7 @@
     components: {Loading, footerNav, Modal, headerNav, Curve},
     mounted() {
       this.showUp();
-      this.hp()
+      this.hp();
     },
     computed: {
       style: function () {
