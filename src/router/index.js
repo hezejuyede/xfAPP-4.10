@@ -8,6 +8,7 @@ import UserLogin from '../components/login/userLogin'
 import UserRegister from '../components/login/userRegister'
 import ReportForm from '../components/reportForm'
 import PDIDiagram from '../components/PDIDiagram'
+import AlarmList from '../components/alarmLsit'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/PDIDiagram',
       name: 'PDIDiagram',
       component: PDIDiagram
+    },
+    {
+      path: '/AlarmList',
+      name: 'AlarmList',
+      component: AlarmList
     }
   ]
 })
