@@ -85,8 +85,8 @@
           {"icon": "iconfont icon-zu", "text": "片碱报表", "url": "/ReportForm"},
           {"icon": "iconfont icon-gaoduanhuagong", "text": "漂粉精一线报表", "url": "/ReportForm"},
           {"icon": "iconfont icon-jichuhuagong", "text": "漂粉精二线报表", "url": "/ReportForm"},
-          {"icon": "iconfont icon-paibanguanli", "text": "排班表", "url": "/PDIDiagram"},
           {"icon": "iconfont icon-baojing", "text": "报警一览表", "url": "/PDIDiagram"},
+          {"icon": "iconfont icon-paibanguanli", "text": "排班表", "url": "/PDIDiagram"}
         ],
         bannerImg: [
           {"img": require("../assets/img/1.jpg")},
