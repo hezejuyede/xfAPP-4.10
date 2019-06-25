@@ -19,10 +19,17 @@ module.exports = {
         }
       },
       '/xf':{
-        target: 'http://www.sdywdz.com',
+        target: 'http://192.168.0.110:3001',
         changeOrigin: true,
         pathRewrite: {
           '/xf': ''
+        }
+      },
+      '/node':{
+        target: 'http://47.98.220.131:3001',
+        changeOrigin: true,
+        pathRewrite: {
+          '/node': ''
         }
       }
     },

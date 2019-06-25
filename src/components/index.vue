@@ -27,8 +27,8 @@
         <div ref="headerlineD" class="yc-headline-box">
           <div class="yc-headline-div" v-for="(item,index) in headerLines">
             <span>公告:</span>
-            <span class="yc-headline-firsta" @click="lookNotice">
-              {{item.text}}
+            <span class="yc-headline-firsta" @click="lookNotice(item.id)">
+              {{item.title}}
             </span>
           </div>
         </div>
@@ -92,7 +92,7 @@
           {"img": require("../assets/img/2.jpg")},
           {"img": require("../assets/img/3.jpg")}
         ],
-        headerLines:[{"text":"11","id":"1"},{"text":"22","id":"2"},{"text":"33","id":"3"},{"text":"44","id":"4"}],
+        headerLines:[],
         htmlData:'',
         titilename:"",
         editorOption: {
@@ -138,15 +138,16 @@
         }
       },
 
-      getMessageList(){
-        axios.post(" " + URL + "/xf/getMessageList")
+      //获取公共列表
+      getMessageList() {
+        axios.post("/node/getXFMessageList")
           .then((res) => {
-            if(res.data.state==="1"){
-              if(JSON.stringify(res.data.data) !== "{}"){
-                this.headerLines=res.data.data
+            if (res.data.state === 1) {
+              if (res.data.data.length > 0) {
+                this.headerLines = res.data.data
               }
               else {
-                this.$message.warning( "暂无数据");
+                this.$message.warning(res.data.message);
               }
             }
             else {
@@ -158,12 +159,13 @@
           });
       },
 
+      //公告自动跳转
       changeHeaderLine() {
         let headerLine = this.$refs.headerlineD;
         let a = 0;
         setInterval(() => {
           a++;
-          if (a === 4) {
+          if (a === this.headerLines.length) {
             a = 0
           }
           let l = -20 * a;
@@ -172,20 +174,22 @@
 
       },
 
+      //图片加载
       getLoading() {
         this.img = ["1"]
       },
 
 
+      //查看公告
       lookNotice(id){
         if (id) {
-          axios.post("/http://www.sdywdz.com/getMessageList")
+          axios.post("/node/viewMessageContent",{"id":id})
             .then((res) => {
               if(res.data.state==="1"){
                 if(JSON.stringify(res.data.data) !== "{}"){
                   this.sbVisible = true;
-                  this.titilename = res.data.data.titilename;
-                  this.htmlData = res.data.data.context;
+                  this.titilename = res.data.data.title;
+                  this.htmlData = res.data.data.content;
                 }
                 else {
                   this.$message.warning( "暂无数据");
@@ -204,7 +208,7 @@
         }
       },
 
-
+      //前往页面
       goToPage(index,url){
         if(index===0){
           window.location.href = url;
