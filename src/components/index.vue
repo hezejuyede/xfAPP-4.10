@@ -142,7 +142,7 @@
       getMessageList() {
         axios.post("/node/getXFMessageList")
           .then((res) => {
-            if (res.data.state === 1) {
+            if (res.data.state === "1") {
               if (res.data.data.length > 0) {
                 this.headerLines = res.data.data
               }
