@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="navigation clearfix" ref="navigation">
-        <div class="IconTemplate " v-for="(item , index) in iconData" @click="goToPage(index,item.url)">
+        <div class="IconTemplate" v-for="(item , index) in iconData" @click="goToPage(index,item.url)">
           <i :class=" item.icon"></i>
           <span>{{item.text}}</span>
         </div>
@@ -84,9 +84,7 @@
           {"icon": "iconfont icon-1jituan", "text": "兴发集团", "url": "https://www.xingfagroup.com"},
           {"icon": "iconfont icon-zu", "text": "片碱报表", "url": "/ReportForm"},
           {"icon": "iconfont icon-gaoduanhuagong", "text": "漂粉精一线报表", "url": "/ReportForm"},
-          {"icon": "iconfont icon-jichuhuagong", "text": "漂粉精二线报表", "url": "/ReportForm"},
-          {"icon": "iconfont icon-baojing", "text": "报警一览表", "url": "/AlarmList"},
-          {"icon": "iconfont icon-paibanguanli", "text": "排班表", "url": "/workSchedule"}
+          {"icon": "iconfont icon-jichuhuagong", "text": "漂粉精二线报表", "url": "/ReportForm"}
         ],
         bannerImg: [
           {"img": require("../assets/img/1.jpg")},
@@ -220,7 +218,6 @@
           localStorage.setItem("IndexUrl", index+1);
           this.$router.push(url)
         }
-
       }
     }
   }
@@ -337,10 +334,11 @@
       }
     }
     .navigation{
+      height: 350px;
       .IconTemplate {
         float: left;
         width: 45%;
-        height: 31%;
+        height: 40%;
         margin-bottom:2%;
         margin-left: 3%;
         display: flex;
@@ -353,10 +351,10 @@
           background-color: @color-bg-lv;
           color: @color-white;
           border-radius: 20%;
-          width: 60px;
-          height:60px;
-          line-height: 60px;
-          font-size: 300%;
+          width: 80px;
+          height:80px;
+          line-height: 80px;
+          font-size: 400%;
           text-align: center;
         }
         .icon-zu {
@@ -364,10 +362,10 @@
           background-color: @color-bg-lan;
           color: @color-white;
           border-radius: 20%;
-          width: 60px;
-          height:60px;
-          line-height: 60px;
-          font-size: 300%;
+          width: 80px;
+          height:80px;
+          line-height: 80px;
+          font-size: 400%;
           text-align: center;
         }
         .icon-gaoduanhuagong {
@@ -375,10 +373,10 @@
           background-color: @color-bg-cs;
           color: @color-white;
           border-radius: 20%;
-          width: 60px;
-          height:60px;
-          line-height: 60px;
-          font-size: 300%;
+          width: 80px;
+          height:80px;
+          line-height: 80px;
+          font-size: 400%;
           text-align: center;
         }
         .icon-jichuhuagong {
@@ -386,10 +384,10 @@
           background-color: #409EFF;
           color: @color-white;
           border-radius: 20%;
-          width: 60px;
-          height:60px;
-          line-height: 60px;
-          font-size: 300%;
+          width: 80px;
+          height:80px;
+          line-height: 80px;
+          font-size: 400%;
           text-align: center;
         }
         .icon-paibanguanli {
