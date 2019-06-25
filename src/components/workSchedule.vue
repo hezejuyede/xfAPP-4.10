@@ -88,11 +88,14 @@
         img: "",
 
         select: "",
+
         selectOptions: [],
 
         tableData: [],
         cols: [],
+
         time: "",
+
         height:Number
       }
 
@@ -190,25 +193,6 @@
       },
 
 
-      //改变下拉显示数据
-      changeSelect() {
-        if (this.select && this.time ) {
-          this.loadingShowData(this.select,this.time)
-        }
-        else {
-          this.message = "时间和下拉不能为空";
-          this.HideModal = false;
-          const that = this;
-
-          function a() {
-            that.message = "";
-            that.HideModal = true;
-          }
-
-          setTimeout(a, 2000);
-
-        }
-      },
 
       //进行查询
       doSearch() {
