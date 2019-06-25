@@ -11,7 +11,7 @@
                   :header-cell-style="{background:'#A1D0FC',color:'rgba(0, 0, 0, 0.8)',fontSize:'18px'}"
                   :cell-style="{fontSize:'10px'}"
                   border
-                  height="450"
+                  :height="this.height"
                   @row-click="doSeeCurve"
                   highlight-current-row
                   style="width: 99%;margin: auto">
@@ -131,7 +131,7 @@
         isHideCurve: true,
         curveState :false,
         topShow:'1',
-
+        height:Number,
 
         img: "",
         tag: "",
@@ -226,6 +226,7 @@
     mounted() {
       this.showUp();
       this.hp();
+      this.setTableHeight();
     },
     computed: {
       style: function () {
@@ -248,6 +249,21 @@
       getLoading() {
         this.img = ["1"]
       },
+
+      //根据屏幕设置Table高度
+      setTableHeight(){
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+          var H = window.screen.height;
+          this.height = H - 230;
+        }
+        else {
+          var h = document.body.clientHeight;
+          this.height = h - 230;
+        }
+
+      },
+
+
       //改变数据瞬间显示数据
       loadingShowData(data) {
         let that = this;
