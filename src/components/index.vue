@@ -69,6 +69,7 @@
   import FooterView from '../common/footer';
   import {swiper, swiperSlide} from 'vue-awesome-swiper';
   import Loading from '../common/loading';
+  import URL  from '../assets/js/URL'
 
   require('swiper/dist/css/swiper.css');
   import 'quill/dist/quill.core.css';
@@ -131,9 +132,30 @@
           this.$router.push("/UserLogin")
         }
         else {
+          this.getMessageList();
 
 
         }
+      },
+
+      getMessageList(){
+        axios.post(" " + URL + "/xf/getMessageList")
+          .then((res) => {
+            if(res.data.state==="1"){
+              if(JSON.stringify(res.data.data) !== "{}"){
+                this.headerLines=res.data.data
+              }
+              else {
+                this.$message.warning( "暂无数据");
+              }
+            }
+            else {
+              this.$message.warning(res.data.message);
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          });
       },
 
       changeHeaderLine() {
@@ -157,7 +179,7 @@
 
       lookNotice(id){
         if (id) {
-          axios.post(" " + url + "/xuexi/xuexiDetail", {"id": id})
+          axios.post("/http://www.sdywdz.com/getMessageList")
             .then((res) => {
               if(res.data.state==="1"){
                 if(JSON.stringify(res.data.data) !== "{}"){

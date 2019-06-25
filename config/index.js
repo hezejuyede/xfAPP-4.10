@@ -18,11 +18,11 @@ module.exports = {
           '/api': ''
         }
       },
-      '/node':{
-        target: 'http://localhost:3006',
+      '/xf':{
+        target: 'http://www.sdywdz.com',
         changeOrigin: true,
         pathRewrite: {
-          '/node': ''
+          '/xf': ''
         }
       }
     },
