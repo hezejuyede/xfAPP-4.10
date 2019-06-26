@@ -28,7 +28,6 @@
                   highlight-current-row
                   style="width: 98%;margin: auto">
           <el-table-column
-            prop="dryMaterial"
             align="center"
             label="白班">
             <el-table-column
@@ -37,22 +36,21 @@
               label="班级">
             </el-table-column>
             <el-table-column
-              prop="wetMaterial"
+              prop="dayPersonnel"
               align="center"
               label="人员">
             </el-table-column>
           </el-table-column>
           <el-table-column
-            prop="dryMaterial"
             align="center"
             label="晚班">
             <el-table-column
-              prop="dryMaterial"
+              prop="classNight"
               align="center"
               label="班级">
             </el-table-column>
             <el-table-column
-              prop="wetMaterial"
+              prop="nightPersonnel"
               align="center"
               label="人员">
             </el-table-column>
@@ -87,12 +85,7 @@
 
         img: "",
 
-        select: "",
-
-        selectOptions: [],
-
         tableData: [],
-        cols: [],
 
         time: "",
 
@@ -141,18 +134,38 @@
 
       //改变数据瞬间显示数据
       loadingShowData(data) {
-        let that = this;
-        axios.all([
-          axios.post(" " + realTimeUrl + "/api/showTableTitle.ashx", qs.stringify({"name": "reportForm"})),
-          axios.post(" " + realTimeUrl + "/api/showReportFormContextList.ashx", qs.stringify({
-            "id": data,
-            "time": this.time
-          }))
-        ])
-          .then(axios.spread(function (title, table) {
-            that.cols = title.data;
-            that.tableData = table.data;
-          }));
+        axios.post("/xf/getWorkScheduleList", ({ "time": data}))
+          .then((res)=>{
+            if(res.data.state==="1"){
+              if(res.data.data.length>0){
+                this.tableData=res.data.data
+              }
+              else {
+                this.message = "暂无数据";
+                this.HideModal = false;
+                const that = this;
+                function b() {
+                  that.message = "";
+                  that.HideModal = true;
+                }
+                setTimeout(b, 2000);
+              }
+            }
+            else {
+              this.message = res.data.message;
+              this.HideModal = false;
+              const that = this;
+              function a() {
+                that.message = "";
+                that.HideModal = true;
+              }
+              setTimeout(a, 2000);
+            }
+
+          })
+          .catch((err)=>{
+            console.log(err)
+          })
       },
 
       //页面加载检查用户是否登陆，没有登陆就加载登陆页面
@@ -162,33 +175,9 @@
           this.$router.push("/UserLogin")
         }
         else {
-          let that = this;
           this.time = getNowTime();
           this.setTableHeight();
-          let id =this.$route.query.id;
-          if(id){
-            axios.all([
-              axios.post(" " + realTimeUrl + "/api/getSelectReportForm.ashx"),
-            ])
-              .then(axios.spread(function (select) {
-                that.select = id;
-                that.selectOptions = select.data;
-                that.loadingShowData(id);
-              }));
-          }
-          else {
-            axios.all([
-              axios.post(" " + realTimeUrl + "/api/getSelectReportForm.ashx"),
-            ])
-              .then(axios.spread(function (select) {
-                that.select = select.data[0].id;
-                that.selectOptions = select.data;
-                that.loadingShowData(1);
-              }));
-          }
-
-
-
+          this.loadingShowData(this.time)
         }
       },
 
@@ -196,11 +185,11 @@
 
       //进行查询
       doSearch() {
-        if (this.select && this.time) {
-          this.loadingShowData(this.select,this.time)
+        if (this.time) {
+          this.loadingShowData(this.time)
         }
         else {
-          this.message = "下拉选择不能为空";
+          this.message = "查询时间不能为空";
           this.HideModal = false;
           const that = this;
           function a() {
