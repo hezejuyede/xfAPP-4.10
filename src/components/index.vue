@@ -25,9 +25,9 @@
       </div>
       <div class="yc-headline" ref="headerline">
         <div ref="headerlineD" class="yc-headline-box">
-          <div class="yc-headline-div" v-for="(item,index) in headerLines">
+          <div class="yc-headline-div" v-for="(item,index) in headerLines" @click="lookNotice(item.id)">
             <span>公告:</span>
-            <span class="yc-headline-firsta" @click="lookNotice(item.id)">
+            <span class="yc-headline-firsta" >
               {{item.title}}
             </span>
           </div>

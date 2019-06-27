@@ -259,21 +259,22 @@
         else {
           var h = document.body.clientHeight;
           this.height = h - 230;
+
         }
 
       },
 
 
       //改变数据瞬间显示数据
-      loadingShowData(data) {
+        loadingShowData() {
         let that = this;
         axios.all([
-          axios.post(" " + realTimeUrl + "/api/showTableTitle.ashx", qs.stringify({"name": "realTime"})),
-          axios.post(" " + realTimeUrl + "/api/showContextList.ashx", qs.stringify({"id": data}))
+          axios.post(" " + realTimeUrl + "/api/showAlarmList.ashx")
         ])
           .then(axios.spread(function (title, table) {
-            that.cols = title.data;
-            that.tableData = table.data;
+            if(table.data.length>0){
+              that.tableData = table.data;
+            }
           }));
       },
 
@@ -478,6 +479,7 @@
         }
         else {
           this.setTableHeight();
+          this.loadingShowData();
 
         }
       },
@@ -495,7 +497,7 @@
       doSeeCurve(row, column, event) {
         this.tag = row.tag;
         if (this.tag) {
-          axios.post(" " + realTimeUrl + "/api/getNowRealTimeCure.ashx", qs.stringify({
+          axios.post(" " + realTimeUrl + "/api/getNowAlarmListCure.ashx", qs.stringify({
             "tag": this.tag
           }))
             .then((res) => {
@@ -534,7 +536,7 @@
       //根据数据进行曲线查询
       doSearchData() {
         if (this.startTime && this.endTime) {
-          axios.post(" " + realTimeUrl + "/api/getRealTimeCure.ashx", qs.stringify({
+          axios.post(" " + realTimeUrl + "/api/getAlarmListCure.ashx", qs.stringify({
             "tag": this.tag,
             "startTime": this.startTime,
             "endTime": this.endTime
@@ -568,6 +570,7 @@
           this.size=2000;
         }
       },
+      
       //缩小趋势图
       reduceEcharts(){
         if(this.size>300){
