@@ -570,7 +570,7 @@
           this.size=2000;
         }
       },
-      
+
       //缩小趋势图
       reduceEcharts(){
         if(this.size>300){
