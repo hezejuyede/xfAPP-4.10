@@ -140,7 +140,7 @@
 
       //获取公共列表
       getMessageList() {
-        axios.post("/node/getXFMessageList")
+        axios.post(" "+ URL +"/node/getXFMessageList")
           .then((res) => {
             if (res.data.state === "1") {
               if (res.data.data.length > 0) {
