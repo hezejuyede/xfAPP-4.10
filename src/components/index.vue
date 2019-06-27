@@ -317,7 +317,7 @@
     }
     .yc-headline {
       width: 95%;
-      margin: 5px auto 5px auto;
+      margin: 10px auto 10px auto;
       height: 20px;
       position: relative;
       overflow: hidden;
@@ -402,16 +402,17 @@
         justify-content: center;
         flex-direction: column;
         cursor: pointer;
-
+        padding-top: 2%;
+        padding-bottom: 2%;
         .icon-1jituan {
           display: block;
           background-color: @color-bg-lv;
           color: @color-white;
           border-radius: 20%;
-          width: 90px;
-          height:90px;
-          line-height: 90px;
-          font-size: 500%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
           text-align: center;
         }
         .icon-zu {
@@ -419,10 +420,10 @@
           background-color: @color-bg-lan;
           color: @color-white;
           border-radius: 20%;
-          width: 90px;
-          height:90px;
-          line-height: 90px;
-          font-size: 500%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
           text-align: center;
         }
         .icon-gaoduanhuagong {
@@ -430,10 +431,10 @@
           background-color: @color-bg-cs;
           color: @color-white;
           border-radius: 20%;
-          width: 90px;
-          height:90px;
-          line-height: 90px;
-          font-size: 500%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
           text-align: center;
         }
         .icon-jichuhuagong {
@@ -441,10 +442,10 @@
           background-color: #409EFF;
           color: @color-white;
           border-radius: 20%;
-          width: 90px;
-          height:90px;
-          line-height: 90px;
-          font-size: 500%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
           text-align: center;
         }
         .icon-huaxue {
@@ -452,10 +453,10 @@
           background-color: #67C23A;
           color: @color-white;
           border-radius: 20%;
-          width: 90px;
-          height:90px;
-          line-height: 90px;
-          font-size: 500%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
           text-align: center;
         }
         .icon-huaxue1 {
@@ -463,10 +464,10 @@
           background-color:@color-red;
           color: @color-white;
           border-radius: 20%;
-          width: 90px;
-          height:90px;
-          line-height: 90px;
-          font-size: 500%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
           text-align: center;
         }
         .icon-huaxueyongpin {
@@ -474,10 +475,10 @@
           background-color:@color-bg-cs;
           color: @color-white;
           border-radius: 20%;
-          width: 90px;
-          height:90px;
-          line-height: 90px;
-          font-size: 500%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
           text-align: center;
         }
         span {
