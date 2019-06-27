@@ -183,7 +183,7 @@
       //查看公告
       lookNotice(id){
         if (id) {
-          axios.post("/node/viewMessageContent",{"id":id})
+          axios.post(" "+ URL +"/node/viewMessageContent",{"id":id})
             .then((res) => {
               if(res.data.state==="1"){
                 if(JSON.stringify(res.data.data) !== "{}"){
