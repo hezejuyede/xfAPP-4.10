@@ -22,7 +22,6 @@ export function timer() {
     }
 }
 
-
 export function getNowTime() {
    let time = new Date().getTime()-24*60*60*1000;
     let date = new Date(time);
