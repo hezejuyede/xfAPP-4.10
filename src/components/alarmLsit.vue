@@ -226,7 +226,7 @@
     mounted() {
       this.showUp();
       this.hp();
-      this.setTableHeight();
+
     },
     computed: {
       style: function () {
@@ -477,6 +477,7 @@
           this.$router.push("/UserLogin")
         }
         else {
+          this.setTableHeight();
 
         }
       },

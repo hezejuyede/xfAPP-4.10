@@ -74,7 +74,7 @@
   import Loading from '../common/loading'
   import Modal from '../common/modal'
   import qs from 'qs'
-  import {getNowTime} from '../assets/js/api'
+  import {getNowTimes} from '../assets/js/api'
 
   export default {
     name: 'ProductionExecution',
@@ -175,7 +175,7 @@
           this.$router.push("/UserLogin")
         }
         else {
-          this.time = getNowTime();
+          this.time = getNowTimes();
           this.setTableHeight();
           this.loadingShowData(this.time)
         }
