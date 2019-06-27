@@ -68,12 +68,11 @@
 </template>
 <script type="text/ecmascript-6">
   import axios from 'axios'
-  import realTimeUrl from '../assets/js/realTimeUrl'
+  import URL from '../assets/js/URL'
   import headerNav from '../common/header'
   import footerNav from '../common/footer'
   import Loading from '../common/loading'
   import Modal from '../common/modal'
-  import qs from 'qs'
   import {getNowTimes} from '../assets/js/api'
 
   export default {
