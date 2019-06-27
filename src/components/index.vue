@@ -85,7 +85,10 @@
           {"icon": "iconfont icon-1jituan", "text": "兴发集团", "url": "https://www.xingfagroup.com"},
           {"icon": "iconfont icon-zu", "text": "片碱报表", "url": "/ReportForm"},
           {"icon": "iconfont icon-gaoduanhuagong", "text": "漂粉精一线报表", "url": "/ReportForm"},
-          {"icon": "iconfont icon-jichuhuagong", "text": "漂粉精二线报表", "url": "/ReportForm"}
+          {"icon": "iconfont icon-jichuhuagong", "text": "漂粉精二线报表", "url": "/ReportForm"},
+          {"icon": "iconfont icon-huaxue", "text": "片碱实时", "url": "/RealTimeData"},
+          {"icon": "iconfont icon-huaxue1", "text": "漂粉精一线实时", "url": "/RealTimeData"},
+          {"icon": "iconfont icon-huaxueyongpin", "text": "漂粉精二线实时", "url": "/RealTimeData"}
         ],
         bannerImg: [
           {"img": require("../assets/img/1.jpg")},
@@ -240,6 +243,33 @@
             }
           })
         }
+        else if(index===4){
+          localStorage.setItem("IndexUrl", 1);
+          this.$router.push({
+            path:url,
+            query:{
+              id:1
+            }
+          })
+        }
+        else if(index===5){
+          localStorage.setItem("IndexUrl", 1);
+          this.$router.push({
+            path:url,
+            query:{
+              id:2
+            }
+          })
+        }
+        else if(index===6){
+          localStorage.setItem("IndexUrl", 1);
+          this.$router.push({
+            path:url,
+            query:{
+              id:3
+            }
+          })
+        }
         else {
           localStorage.setItem("IndexUrl", index+1);
           this.$router.push(url)
@@ -300,7 +330,7 @@
           height: 20px;
           overflow: hidden;
           span {
-            font-size: @font-size-medium-x;
+            font-size: @font-size-medium;
             color: @color-red;
           }
         }
@@ -360,10 +390,10 @@
       }
     }
     .navigation{
-      height: 350px;
+      margin-bottom: 70px;
       .IconTemplate {
         float: left;
-        width: 45%;
+        width: 30%;
         height: 40%;
         margin-bottom:2%;
         margin-left: 3%;
@@ -372,15 +402,16 @@
         justify-content: center;
         flex-direction: column;
         cursor: pointer;
+
         .icon-1jituan {
           display: block;
           background-color: @color-bg-lv;
           color: @color-white;
           border-radius: 20%;
-          width: 80px;
-          height:80px;
-          line-height: 80px;
-          font-size: 400%;
+          width: 90px;
+          height:90px;
+          line-height: 90px;
+          font-size: 500%;
           text-align: center;
         }
         .icon-zu {
@@ -388,10 +419,10 @@
           background-color: @color-bg-lan;
           color: @color-white;
           border-radius: 20%;
-          width: 80px;
-          height:80px;
-          line-height: 80px;
-          font-size: 400%;
+          width: 90px;
+          height:90px;
+          line-height: 90px;
+          font-size: 500%;
           text-align: center;
         }
         .icon-gaoduanhuagong {
@@ -399,10 +430,10 @@
           background-color: @color-bg-cs;
           color: @color-white;
           border-radius: 20%;
-          width: 80px;
-          height:80px;
-          line-height: 80px;
-          font-size: 400%;
+          width: 90px;
+          height:90px;
+          line-height: 90px;
+          font-size: 500%;
           text-align: center;
         }
         .icon-jichuhuagong {
@@ -410,38 +441,49 @@
           background-color: #409EFF;
           color: @color-white;
           border-radius: 20%;
-          width: 80px;
-          height:80px;
-          line-height: 80px;
-          font-size: 400%;
+          width: 90px;
+          height:90px;
+          line-height: 90px;
+          font-size: 500%;
           text-align: center;
         }
-        .icon-paibanguanli {
+        .icon-huaxue {
           display: block;
           background-color: #67C23A;
           color: @color-white;
           border-radius: 20%;
-          width: 60px;
-          height:60px;
-          line-height: 60px;
-          font-size: 300%;
+          width: 90px;
+          height:90px;
+          line-height: 90px;
+          font-size: 500%;
           text-align: center;
         }
-        .icon-baojing {
+        .icon-huaxue1 {
           display: block;
           background-color:@color-red;
           color: @color-white;
           border-radius: 20%;
-          width: 60px;
-          height:60px;
-          line-height: 60px;
-          font-size: 300%;
+          width: 90px;
+          height:90px;
+          line-height: 90px;
+          font-size: 500%;
+          text-align: center;
+        }
+        .icon-huaxueyongpin {
+          display: block;
+          background-color:@color-bg-cs;
+          color: @color-white;
+          border-radius: 20%;
+          width: 90px;
+          height:90px;
+          line-height: 90px;
+          font-size: 500%;
           text-align: center;
         }
         span {
           margin-top: 5%;
           color: #909399;
-          font-size: @font-size-medium;
+          font-size: 13px;
         }
       }
     }

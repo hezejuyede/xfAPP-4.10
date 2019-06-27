@@ -438,14 +438,29 @@
         }
         else {
           let that = this;
-          axios.all([
-            axios.post(" " + realTimeUrl + "/api/getRealTimeSelect.ashx"),
-          ])
-            .then(axios.spread(function (select) {
-              that.select = select.data[0].id;
-              that.selectOptions = select.data;
-              that.loadingShowData(1);
-            }));
+          let id =this.$route.query.id;
+          if(id){
+            axios.all([
+              axios.post(" " + realTimeUrl + "/api/getRealTimeSelect.ashx"),
+            ])
+              .then(axios.spread(function (select) {
+                that.select = id;
+                that.selectOptions = select.data;
+                that.loadingShowData(id);
+              }));
+          }
+          else {
+            axios.all([
+              axios.post(" " + realTimeUrl + "/api/getRealTimeSelect.ashx"),
+            ])
+              .then(axios.spread(function (select) {
+                that.select = select.data[0].id;
+                that.selectOptions = select.data;
+                that.loadingShowData(1);
+              }));
+          }
+
+
         }
       },
 
