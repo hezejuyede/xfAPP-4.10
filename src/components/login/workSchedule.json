@@ -1,0 +1,44 @@
+[
+  { "class" : "四班", "name" : "宋涛"},
+  { "class" : "四班", "name" : "毛智明"},
+  { "class" : "四班", "name" : "刘雷"},
+  { "class" : "四班", "name" : "陈越"},
+  { "class" : "四班", "name" : "刘义明"},
+  { "class" : "四班", "name" : "朱砚"},
+  { "class" : "四班", "name" : "鲁光艳"},
+  { "class" : "四班", "name" : "韦程蓉"},
+  { "class" : "四班", "name" : "李小芹"},
+
+  { "class" : "三班", "name" : "张宜凡"},
+  { "class" : "三班", "name" : "何金凤"},
+  { "class" : "三班", "name" : "李蓉"},
+  { "class" : "三班", "name" : "黄友兵"},
+  { "class" : "三班", "name" : "龚政"},
+  { "class" : "三班", "name" : "高定"},
+  { "class" : "三班", "name" : "钟芝明"},
+  { "class" : "三班", "name" : "凌盺煜"},
+
+  { "class" : "一班", "name" : "尤旭"},
+  { "class" : "一班", "name" : "朱兴爽"},
+  { "class" : "一班", "name" : "陈荣华"},
+  { "class" : "一班", "name" : "平海银"},
+  { "class" : "一班", "name" : "倪飞"},
+  { "class" : "一班", "name" : "李国佑"},
+  { "class" : "一班", "name" : "王静"},
+  { "class" : "一班", "name" : "汪家洪"},
+  { "class" : "一班", "name" : "贺军"},
+
+
+  { "class" : "二班", "name" : "周勇"},
+  { "class" : "二班", "name" : "周鹏"},
+  { "class" : "二班", "name" : "易术艳"},
+  { "class" : "二班", "name" : "胡青南"},
+  { "class" : "二班", "name" : "胡瑞林"},
+  { "class" : "二班", "name" : "陈军"},
+  { "class" : "二班", "name" : "程仁杰"},
+  { "class" : "二班", "name" : "周华"}
+
+
+
+
+]
