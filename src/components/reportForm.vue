@@ -182,9 +182,6 @@
                 that.loadingShowData(1);
               }));
           }
-
-
-
         }
       },
 
