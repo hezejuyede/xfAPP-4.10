@@ -128,7 +128,7 @@
 </template>
 <script type="text/ecmascript-6">
   import axios from 'axios'
-  import realTimeUrl from '../assets/js/realTimeUrl'
+  import otherUrl from '../assets/js/otherUrl'
   import headerNav from '../common/header'
   import footerNav from '../common/footer'
   import Loading from '../common/loading'
@@ -511,7 +511,7 @@
       doSeeCurve(row, column, event) {
         this.tag = row.tag;
         if (this.tag) {
-          axios.post(" " + realTimeUrl + "/api/getNowRealTimeCure.ashx", qs.stringify({
+          axios.post(" " + otherUrl + "/api/getNowRealTimeCure.ashx", qs.stringify({
             "tag": this.tag
           }))
             .then((res) => {
@@ -548,7 +548,7 @@
       //根据数据进行曲线查询
       doSearchData() {
         if (this.startTime && this.endTime) {
-          axios.post(" " + realTimeUrl + "/api/getRealTimeCure.ashx", qs.stringify({
+          axios.post(" " + otherUrl + "/api/getRealTimeCure.ashx", qs.stringify({
             "tag": this.tag,
             "startTime": this.startTime,
             "endTime": this.endTime
