@@ -6,26 +6,40 @@
         报警一览表
       </div>
       <div class="contentBottom">
-        <el-table class="tb-edit"
-                  :data="tableData"
-                  :header-cell-style="{background:'#A1D0FC',color:'rgba(0, 0, 0, 0.8)',fontSize:'18px'}"
-                  :cell-style="{fontSize:'10px'}"
-                  border
-                  :height="this.height"
-                  @row-click="doSeeCurve"
-                  highlight-current-row
-                  style="width: 99%;margin: auto">
-          <el-table-column
-            prop="dryMaterial"
-            align="center"
-            label="干物料">
-          </el-table-column>
-          <el-table-column
-            prop="wetMaterial"
-            align="center"
-            label="湿物料">
-          </el-table-column>
-        </el-table>
+        <div class="fl" style="width:50% ">
+          <el-table class="tb-edit"
+                    :data="tableData1"
+                    :header-cell-style="{background:'#A1D0FC',color:'rgba(0, 0, 0, 0.8)',fontSize:'18px'}"
+                    :cell-style="{fontSize:'10px'}"
+                    border
+                    :height="this.height"
+                    @row-click="doSeeCurve"
+                    highlight-current-row
+                    style="width: 99%;margin: auto">
+            <el-table-column
+              prop="dryMaterial"
+              align="center"
+              label="干物料">
+            </el-table-column>
+          </el-table>
+        </div>
+        <div class="fl" style="width:50% ">
+          <el-table class="tb-edit"
+                    :data="tableData2"
+                    :header-cell-style="{background:'#A1D0FC',color:'rgba(0, 0, 0, 0.8)',fontSize:'18px'}"
+                    :cell-style="{fontSize:'10px'}"
+                    border
+                    :height="this.height"
+                    @row-click="doSeeCurve"
+                    highlight-current-row
+                    style="width: 99%;margin: auto">
+            <el-table-column
+              prop="wetMaterial"
+              align="center"
+              label="湿物料">
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
       <div v-bind:class="{hideModal:isHideCurve}">
         <div class="modal">
@@ -139,71 +153,85 @@
         select: "",
         selectOptions: [],
 
-        tableData: [
+        tableData1: [
           {
-            "dryMaterial": "IT3001K1一次离心机电流",
-            "wetMaterial": "TE1113/TE2113主反应器温度",
-            "tag": "TT_2101",
+            "dryMaterial": "一次离心机电流",
+            "tag": "IT3001K1",
           },
           {
-            "dryMaterial": "FT1211干燥进料量",
-            "wetMaterial": "FT1211干燥进料量",
-            "tag": "TT_2101",
+            "dryMaterial": "干燥进料量",
+            "tag": "FT1211",
           },
           {
-            "dryMaterial": "IT5005F1干燥器刀架电流",
-            "wetMaterial": "AT1112/AT2112主反应器ORP显示",
-            "tag": "TT_2101",
+            "dryMaterial": "干燥器刀架电流",
+            "tag": "IT5005F1",
           },
           {
-            "dryMaterial": "IT5002G1干燥器喂料器绞笼电流",
-            "wetMaterial": "AIT1110A/AIT2110A主反应器PH显",
-            "tag": "TT_2101",
+            "dryMaterial": "干燥器喂料器绞笼电流",
+            "tag": "IT5002G1",
           },
           {
-            "dryMaterial": "IT6004G1压实机喂料器电流",
-            "wetMaterial": "LT1114/LT2114主反应器液位",
-            "tag": "TT_2101",
+            "dryMaterial": "压实机喂料器电流",
+            "tag": "IT6004G1",
           },
 
           {
-            "dryMaterial": "IT6004G2   压实机电流",
-            "wetMaterial": "IT4004K1/IT4004K2 二次离心机电流",
-            "tag": "TT_2101",
-          },
-
-
-
-          {
-            "dryMaterial": "IT6005G1   造粒机电流",
-            "wetMaterial": "",
-            "tag": "TT_2101",
+            "dryMaterial": "压实机电流",
+            "tag": "IT6004G2",
           },
 
           {
-            "dryMaterial": "TE1516A/B/C  中间仓温度",
-            "wetMaterial": "",
-            "tag": "TT_2101",
+            "dryMaterial": "造粒机电流",
+            "tag": "IT6005G1",
+          },
+
+          {
+            "dryMaterial": "中间仓温度",
+            "tag": "TE1516A/B/C",
           },
 
 
           {
-            "dryMaterial": "TE1520A    中间仓下料温度",
-            "wetMaterial": "",
-            "tag": "TT_2101",
+            "dryMaterial": "中间仓下料温度",
+            "tag": "TE1520A",
           },
           {
-            "dryMaterial": "IT6006M1/M2 提升机进料绞笼电流",
-            "wetMaterial": "",
-            "tag": "TT_2101",
+            "dryMaterial": "提升机进料绞笼电流",
+            "tag": "IT6006M1/M2 ",
           },
           {
-            "dryMaterial": "TE1613A/B/C/D/E/F 成品仓温度",
-            "wetMaterial": "",
-            "tag": "TT_2101",
+            "dryMaterial": "成品仓温度",
+            "tag": "TE1613A/B/C/D/E/F",
           }
         ],
 
+        tableData2: [
+          {
+            "wetMaterial": "主反应器温度",
+            "tag": "TE1113/TE2113",
+          },
+          {
+            "wetMaterial": "干燥进料量",
+            "tag": "FT1211",
+          },
+          {
+            "wetMaterial": "主反应器ORP显示",
+            "tag": "AT1112/AT2112",
+          },
+          {
+            "wetMaterial": "主反应器PH显",
+            "tag": "AIT1110A/AIT2110A",
+          },
+          {
+            "wetMaterial": "主反应器液位",
+            "tag": "LT1114/LT2114",
+          },
+
+          {
+            "wetMaterial": " 二次离心机电流",
+            "tag": "IT4004K1/IT4004K2",
+          }
+        ],
 
         cols: [
           {"prop": "dryMaterial", "label": "干物料"},
@@ -264,20 +292,6 @@
 
         }
 
-      },
-
-
-      //改变数据瞬间显示数据
-        loadingShowData() {
-        let that = this;
-        axios.all([
-          axios.post(" " + realTimeUrl + "/api/showAlarmList.ashx")
-        ])
-          .then(axios.spread(function (title, table) {
-            if(table.data.length>0){
-              that.tableData = table.data;
-            }
-          }));
       },
 
       //监控横屏
@@ -481,8 +495,6 @@
         }
         else {
           this.setTableHeight();
-          this.loadingShowData();
-
         }
       },
 
@@ -499,7 +511,7 @@
       doSeeCurve(row, column, event) {
         this.tag = row.tag;
         if (this.tag) {
-          axios.post(" " + realTimeUrl + "/api/getNowAlarmListCure.ashx", qs.stringify({
+          axios.post(" " + realTimeUrl + "/api/getNowRealTimeCure.ashx", qs.stringify({
             "tag": this.tag
           }))
             .then((res) => {
@@ -516,7 +528,6 @@
               this.drawLine();
             })
             .catch((err) => {
-
               console.log(err)
             });
         }
@@ -534,11 +545,10 @@
         }
       },
 
-
       //根据数据进行曲线查询
       doSearchData() {
         if (this.startTime && this.endTime) {
-          axios.post(" " + realTimeUrl + "/api/getAlarmListCure.ashx", qs.stringify({
+          axios.post(" " + realTimeUrl + "/api/getRealTimeCure.ashx", qs.stringify({
             "tag": this.tag,
             "startTime": this.startTime,
             "endTime": this.endTime
