@@ -31,6 +31,13 @@ module.exports = {
         pathRewrite: {
           '/node': ''
         }
+      },
+      '/asp':{
+        target: 'http://47.98.220.131:6666',
+        changeOrigin: true,
+        pathRewrite: {
+          '/asp': ''
+        }
       }
     },
 

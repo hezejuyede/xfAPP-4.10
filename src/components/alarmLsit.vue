@@ -2,124 +2,52 @@
   <div class="template">
     <header-nav></header-nav>
     <div class="contentDiv">
-      <div class="contentTop" ref="contentTop">
-        报警一览表
+      <div class="contentTop">
+        <div class="listSearch">
+          <el-button type="primary" @click="doSearch">查询</el-button>
+        </div>
       </div>
       <div class="contentBottom">
-        <div class="fl" style="width:50% ">
-          <el-table class="tb-edit"
-                    :data="tableData1"
-                    :header-cell-style="{background:'#A1D0FC',color:'rgba(0, 0, 0, 0.8)',fontSize:'18px'}"
-                    :cell-style="{fontSize:'10px'}"
-                    border
-                    :height="this.height"
-                    @row-click="doSeeCurve"
-                    highlight-current-row
-                    style="width: 99%;margin: auto">
-            <el-table-column
-              prop="dryMaterial"
-              align="center"
-              label="干物料">
-            </el-table-column>
-          </el-table>
-        </div>
-        <div class="fl" style="width:50% ">
-          <el-table class="tb-edit"
-                    :data="tableData2"
-                    :header-cell-style="{background:'#A1D0FC',color:'rgba(0, 0, 0, 0.8)',fontSize:'18px'}"
-                    :cell-style="{fontSize:'10px'}"
-                    border
-                    :height="this.height"
-                    @row-click="doSeeCurve"
-                    highlight-current-row
-                    style="width: 99%;margin: auto">
-            <el-table-column
-              prop="wetMaterial"
-              align="center"
-              label="湿物料">
-            </el-table-column>
-          </el-table>
-        </div>
+        <el-table class="tb-edit"
+                  :data="tableData"
+                  :header-cell-style="{background:'#A1D0FC',color:'rgba(0, 0, 0, 0.8)',fontSize:'14px'}"
+                  border
+                  :cell-style="{fontSize:'12px'}"
+                  :height="this.height"
+                  highlight-current-row
+                  style="width: 98%;margin: auto">
+          <el-table-column
+            align="center"
+            fixed
+            width="130"
+            prop="tagName"
+            label="名称">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="realTimeValue"
+            label="实时值">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="upperLimitValue"
+            label="上限值">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="lowerLimitValue"
+            label="下限值">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="currentState"
+            label="当前状态">
+          </el-table-column>
+        </el-table>
       </div>
-      <div v-bind:class="{hideModal:isHideCurve}">
-        <div class="modal">
-          <div class="container">
-            <div class="containerTop" v-if="this.topShow==='1'">
-              <div class="containerTopDiv">
-                <el-button type="danger" @click="modalClose">关闭窗口</el-button>
-              </div>
-              <div class="containerTopDiv">
-                <el-date-picker
-                  style="width: 300px"
-                  v-model="startTime"
-                  type="datetime"
-                  value-format="yyyy-MM-dd HH:mm:ss"
-                  placeholder="开始时间">
-                </el-date-picker>
-              </div>
-              <div class="containerTopDiv">
-                <el-date-picker
-                  style="width: 300px"
-                  v-model="endTime"
-                  type="datetime"
-                  value-format="yyyy-MM-dd HH:mm:ss"
-                  placeholder="结束时间">
-                </el-date-picker>
-              </div>
-              <div class="containerTopDiv">
-                <el-button type="primary" @click="doSearchData()">查询曲线</el-button>
-              </div>
-              <div class="containerTopDiv">
-                <el-button type="success"  @click="addEcharts">放大曲线</el-button>
-              </div>
-              <div class="containerTopDiv">
-                <el-button type="warning" @click="reduceEcharts">缩小曲线</el-button>
-              </div>
-            </div>
-            <div class="containerTop2"  v-if="this.topShow==='2'">
-              <div class="containerTopDiv2">
-                <el-date-picker
-                  style="width: 200px"
-                  v-model="startTime"
-                  type="datetime"
-                  value-format="yyyy-MM-dd HH:mm:ss"
-                  placeholder="开始时间">
-                </el-date-picker>
-              </div>
-              <div class="containerTopDiv2">
-                <el-date-picker
-                  style="width: 200px"
-                  v-model="endTime"
-                  type="datetime"
-                  value-format="yyyy-MM-dd HH:mm:ss"
-                  placeholder="结束时间">
-                </el-date-picker>
-              </div>
-              <div class="containerTopDiv2">
-                <el-button type="primary" @click="doSearchData()">查询</el-button>
-              </div>
-              <div class="containerTopDiv2">
-                <el-button type="danger" @click="modalClose">关闭</el-button>
-              </div>
-              <div class="containerTopDiv2">
-                <el-button type="success"  @click="addEcharts">放大</el-button>
-              </div>
-              <div class="containerTopDiv2">
-                <el-button type="warning" @click="reduceEcharts">缩小</el-button>
-              </div>
-            </div>
-            <div class="containerBottom" id="panel">
-              <div id="dataBar" :style="{width: '100%', height: '300px'}"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Modal :msg="message"
-             :isHideModal="HideModal"></Modal>
     </div>
-    <div class="upTop" ref="upTop" @click="upToTop">
-      <i class="iconfont icon-xiangshang1"></i>
-    </div>
+    <Modal :msg="message"
+           :isHideModal="HideModal"></Modal>
     <div class="loading-container" v-show="!img">
       <loading></loading>
     </div>
@@ -133,8 +61,7 @@
   import footerNav from '../common/footer'
   import Loading from '../common/loading'
   import Modal from '../common/modal'
-  import Curve from '../common/curve'
-  import qs from 'qs'
+
 
   export default {
     name: 'ProductionExecution',
@@ -142,126 +69,19 @@
       return {
         message: '',
         HideModal: true,
-        isHideCurve: true,
-        curveState :false,
-        topShow:'1',
-        height:Number,
-
         img: "",
-        tag: "",
-
-        select: "",
-        selectOptions: [],
-
-        tableData1: [
-          {
-            "dryMaterial": "一次离心机电流",
-            "tag": "IT3001K1",
-          },
-          {
-            "dryMaterial": "干燥进料量",
-            "tag": "FT1211",
-          },
-          {
-            "dryMaterial": "干燥器刀架电流",
-            "tag": "IT5005F1",
-          },
-          {
-            "dryMaterial": "干燥器喂料器绞笼电流",
-            "tag": "IT5002G1",
-          },
-          {
-            "dryMaterial": "压实机喂料器电流",
-            "tag": "IT6004G1",
-          },
-
-          {
-            "dryMaterial": "压实机电流",
-            "tag": "IT6004G2",
-          },
-
-          {
-            "dryMaterial": "造粒机电流",
-            "tag": "IT6005G1",
-          },
-
-          {
-            "dryMaterial": "中间仓温度",
-            "tag": "TE1516A/B/C",
-          },
-
-
-          {
-            "dryMaterial": "中间仓下料温度",
-            "tag": "TE1520A",
-          },
-          {
-            "dryMaterial": "提升机进料绞笼电流",
-            "tag": "IT6006M1/M2 ",
-          },
-          {
-            "dryMaterial": "成品仓温度",
-            "tag": "TE1613A/B/C/D/E/F",
-          }
-        ],
-
-        tableData2: [
-          {
-            "wetMaterial": "主反应器温度",
-            "tag": "TE1113/TE2113",
-          },
-          {
-            "wetMaterial": "干燥进料量",
-            "tag": "FT1211",
-          },
-          {
-            "wetMaterial": "主反应器ORP显示",
-            "tag": "AT1112/AT2112",
-          },
-          {
-            "wetMaterial": "主反应器PH显",
-            "tag": "AIT1110A/AIT2110A",
-          },
-          {
-            "wetMaterial": "主反应器液位",
-            "tag": "LT1114/LT2114",
-          },
-
-          {
-            "wetMaterial": " 二次离心机电流",
-            "tag": "IT4004K1/IT4004K2",
-          }
-        ],
-
-        cols: [
-          {"prop": "dryMaterial", "label": "干物料"},
-          {"prop": "wetMaterial", "label": "湿物料"}
-          ],
-
-
-        name: "",
-        yMax: "",
-        yMin: "",
-        xData: [],
-        yData: [],
-        startTime: "",
-        endTime: "",
-
-        size:300,
-
+        tableData: [],
+        height:Number
       }
 
     },
-    components: {Loading, footerNav, Modal, headerNav, Curve},
+    components: {Loading, footerNav, Modal, headerNav},
     mounted() {
-      this.showUp();
-      this.hp();
+
 
     },
     computed: {
-      style: function () {
-        return "width:"+this.width+"px;height:"+this.height+"px"
-      }
+
     },
     created() {
       //检索用户状态
@@ -289,202 +109,30 @@
         else {
           var h = document.body.clientHeight;
           this.height = h - 230;
-
         }
 
       },
 
-      //监控横屏
-      hp() {
-        const that = this;
-        window.addEventListener('orientationchange', function () {
-          if (that.curveState === true) {
-            if(window.orientation===90){
-              that.topShow="2";
-              that.$nextTick(() => {
-                let myChart = that.$echarts.init(document.getElementById('dataBar'));
-                myChart.resize();
-                // 绘制图表
-                myChart.setOption({
-                  title: {
-                    text: this.name,
-                    subtext: '实时显示'
-                  },
-                  tooltip: {
-                    trigger: 'axis'
-                  },
-                  legend: {
-                    data: []
-                  },
-                  grid: {
-                    x: 50,
-                    borderWidth: 1,
-                    x2: 10,
-                    y2: 30
-                  },
 
-                  toolbox: {
-                    show: true,
-                    feature: {
-                      mark: {show: true},
-                      magicType: {show: true, type: ['line', 'bar']},
-                      restore: {show: true},
-                    }
-                  },
-                  calculable: true,
-                  xAxis: [
-                    {
-                      type: 'category',
-                      boundaryGap: false,
-                      data: that.xData
-                    }
-                  ],
-                  yAxis: [
-                    {
-                      max: that.yMax,
-                      min: that.yMin,
-                      type: 'value'
-                    }
-                  ],
-                  series: [
-                    {
-                      name: '当前时间段数据',
-                      type: 'line',
-                      smooth: true,
-                      data: that.yData
-                    }
-                  ]
-                });
-                window.addEventListener("resize",()=>{
-                  myChart.resize();
-                });
-              })
+      //改变数据瞬间显示数据
+      loadingShowData() {
+        axios.post(" " + otherUrl + "/asp/showTableData")
+          .then((res) => {
+            if(res.data.state==="1"){
+              if(res.data.data.length>0){
+               this.tableData = res.data.data;
+              }
+              else {
+                this.$message.warning("暂无数据");
+              }
             }
-            if(window.orientation===0){
-              that.topShow="1";
-              that.$nextTick(() => {
-                let myChart = that.$echarts.init(document.getElementById('dataBar'));
-                myChart.resize();
-                // 绘制图表
-                myChart.setOption({
-                  title: {
-                    text: this.name,
-                    subtext: '实时显示'
-                  },
-                  tooltip: {
-                    trigger: 'axis'
-                  },
-                  legend: {
-                    data: []
-                  },
-                  grid: {
-                    x: 50,
-                    borderWidth: 1,
-                    x2: 10,
-                    y2: 30
-                  },
-
-                  toolbox: {
-                    show: true,
-                    feature: {
-                      mark: {show: true},
-                      magicType: {show: true, type: ['line', 'bar']},
-                      restore: {show: true},
-                    }
-                  },
-                  calculable: true,
-                  xAxis: [
-                    {
-                      type: 'category',
-                      boundaryGap: false,
-                      data: that.xData
-                    }
-                  ],
-                  yAxis: [
-                    {
-                      max: that.yMax,
-                      min: that.yMin,
-                      type: 'value'
-                    }
-                  ],
-                  series: [
-                    {
-                      name: '当前时间段数据',
-                      type: 'line',
-                      smooth: true,
-                      data: that.yData
-                    }
-                  ]
-                });
-                window.addEventListener("resize",()=>{
-                  myChart.resize();
-                });
-              })
+            else {
+              this.$message.warning(res.data.message);
             }
-            if(window.orientation===-90){
-              that.topShow="2";
-              that.$nextTick(() => {
-                let myChart = that.$echarts.init(document.getElementById('dataBar'));
-                myChart.resize();
-                // 绘制图表
-                myChart.setOption({
-                  title: {
-                    text: this.name,
-                    subtext: '实时显示'
-                  },
-                  tooltip: {
-                    trigger: 'axis'
-                  },
-                  legend: {
-                    data: []
-                  },
-                  grid: {
-                    x: 50,
-                    borderWidth: 1,
-                    x2: 10,
-                    y2: 30
-                  },
-
-                  toolbox: {
-                    show: true,
-                    feature: {
-                      mark: {show: true},
-                      magicType: {show: true, type: ['line', 'bar']},
-                      restore: {show: true},
-                    }
-                  },
-                  calculable: true,
-                  xAxis: [
-                    {
-                      type: 'category',
-                      boundaryGap: false,
-                      data: that.xData
-                    }
-                  ],
-                  yAxis: [
-                    {
-                      max: that.yMax,
-                      min: that.yMin,
-                      type: 'value'
-                    }
-                  ],
-                  series: [
-                    {
-                      name: '当前时间段数据',
-                      type: 'line',
-                      smooth: true,
-                      data: that.yData
-                    }
-                  ]
-                });
-                window.addEventListener("resize",()=>{
-                  myChart.resize();
-                });
-              })
-            }
-
-          }
-        });
+          })
+          .catch((err) => {
+            console.log(err)
+          });
       },
 
       //页面加载检查用户是否登陆，没有登陆就加载登陆页面
@@ -495,239 +143,13 @@
         }
         else {
           this.setTableHeight();
+          this.loadingShowData();
         }
       },
 
-
-      //关闭曲线页面
-      modalClose() {
-        this.isHideCurve = true;
-        this.curveState = false;
-        this.xData = [];
-        this.yData = [];
-      },
-
-      //查看曲线
-      doSeeCurve(row, column, event) {
-        this.tag = row.tag;
-        if (this.tag) {
-          axios.post(" " + otherUrl + "/api/getNowRealTimeCure.ashx", qs.stringify({
-            "tag": this.tag
-          }))
-            .then((res) => {
-              this.startTime = "";
-              this.endTime = "";
-              this.xData = res.data.xData;
-              this.yData = res.data.yData;
-              this.name = res.data.name;
-              this.yMax = res.data.Max;
-              this.yMin = res.data.Min;
-              this.isHideCurve = false;
-              this.curveState =true;
-
-              this.drawLine();
-            })
-            .catch((err) => {
-              console.log(err)
-            });
-        }
-        else {
-          this.message = "该数据没有找出测点";
-          this.HideModal = false;
-          const that = this;
-
-          function a() {
-            that.message = "";
-            that.HideModal = true;
-          }
-
-          setTimeout(a, 2000);
-        }
-      },
-
-      //根据数据进行曲线查询
-      doSearchData() {
-        if (this.startTime && this.endTime) {
-          axios.post(" " + otherUrl + "/api/getRealTimeCure.ashx", qs.stringify({
-            "tag": this.tag,
-            "startTime": this.startTime,
-            "endTime": this.endTime
-          }))
-            .then((res) => {
-              this.xData = res.data.xData;
-              this.yData = res.data.yData;
-              this.name = res.data.name;
-              this.yMax = res.data.Max;
-              this.yMin = res.data.Min;
-              this.drawLine();
-            })
-            .catch((err) => {
-              console.log(err)
-            });
-        }
-        else {
-          this.$message({
-            message: '时间不能为空',
-            center: true,
-            type: 'warning'
-          });
-        }
-      },
-
-      //放大趋势图
-      addEcharts(){
-        if(this.size<2000){
-          this.size=this.size+50;}
-        else{
-          this.size=2000;
-        }
-      },
-
-      //缩小趋势图
-      reduceEcharts(){
-        if(this.size>300){
-          this.size=this.size-50;}
-        else{
-          this.size=300;
-        }
-
-      },
-
-
-      //显示向上按钮
-      showUp() {
-        let height = this.$refs.contentTop.offsetHeight;
-        let upTop = this.$refs.upTop;
-        window.addEventListener('scroll', () => {
-          let top = window.scrollY;
-          if (top >= height) {
-            upTop.style.display = "block"
-          }
-          else if (top < height) {
-            upTop.style.display = "none"
-          }
-        });
-
-      },
-
-      //点击向上
-      upToTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-      },
-
-
-      drawLine() {
-        // 基于准备好的dom，初始化echarts实例
-        this.$nextTick(() => {
-          let myChart = this.$echarts.init(document.getElementById('dataBar'));
-          // 绘制图表
-          myChart.setOption({
-            title: {
-              text: this.name,
-              subtext: '实时显示'
-            },
-            tooltip: {
-              trigger: 'axis'
-            },
-            legend: {
-              data: []
-            },
-            grid: {
-              x: 50,
-              borderWidth: 1,
-              x2: 10,
-              y2: 30
-            },
-
-            toolbox: {
-              show: true,
-              feature: {
-                mark: {show: true},
-                magicType: {show: true, type: ['line', 'bar']},
-                restore: {show: true},
-              }
-            },
-            calculable: true,
-            xAxis: [
-              {
-                type: 'category',
-                boundaryGap: false,
-                data: this.xData
-              }
-            ],
-            yAxis: [
-              {
-                max: this.yMax,
-                min: this.yMin,
-                type: 'value'
-              }
-            ],
-            series: [
-              {
-                name: '当前时间段数据',
-                type: 'line',
-                smooth: true,
-                data: this.yData
-              }
-            ]
-          });
-          this.$watch("size",function(newVal, oldVal){
-            var dom=document.getElementById('panel');
-            dom.innerHTML='<div id="dataBar" style="width:'+newVal+'px;height:'+newVal+'px"></div>';
-            let myChart = this.$echarts.init(document.getElementById('dataBar'));
-            myChart.setOption({
-              title: {
-                text: this.name,
-                subtext: '实时显示'
-              },
-              tooltip: {
-                trigger: 'axis'
-              },
-              legend: {
-                data: []
-              },
-              grid: {
-                x: 50,
-                borderWidth: 1,
-                x2: 10,
-                y2: 30
-              },
-
-              toolbox: {
-                show: true,
-                feature: {
-                  mark: {show: true},
-                  magicType: {show: true, type: ['line', 'bar']},
-                  restore: {show: true},
-                }
-              },
-              calculable: true,
-              xAxis: [
-                {
-                  type: 'category',
-                  boundaryGap: false,
-                  data: this.xData
-                }
-              ],
-              yAxis: [
-                {
-                  max: this.yMax,
-                  min: this.yMin,
-                  type: 'value'
-                }
-              ],
-              series: [
-                {
-                  name: '当前时间段数据',
-                  type: 'line',
-                  smooth: true,
-                  data: this.yData
-                }
-              ]
-            });
-          })
-        })
+      //进行查询
+      doSearch() {
+        this.loadingShowData()
       },
 
     }
@@ -739,116 +161,32 @@
   .template {
     margin-bottom: 80px;
     .contentTop {
-      height: 30px;
       width: 100%;
       background-color: #D8E5F6;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 10px;
-    }
-    .contentBottom {
-      margin-bottom: 80px;
-    }
-    .modal {
-      position: fixed;
-      left: 0;
-      top: 0;
-      z-index: 999;
-      width: 100%;
-      height: 100%;
-      background-color: @color-background-dd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .container {
-        width: 98%;
-        height: 98%;
-        overflow: auto;
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: @color-white;
-        border-radius: 10px;
-        .containerTop {
+      margin-bottom: 20px;
+      .listSearch {
+        width: 95%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .el-button {
           display: flex;
           align-items: center;
           justify-content: center;
-          flex-direction: column;
-          .containerTopDiv {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2%;
-            .el-button {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 200px;
-              height: 35px;
-              margin-right: 10%;
-              margin-left: 10%;
-            }
-          }
-        }
-        .containerTop2 {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          .containerTopDiv2 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1%;
-            margin-left: 1%;
-            .el-button {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width:40px;
-              height: 35px;
-              margin-right: 5%;
-              margin-left: 5%;
-            }
-          }
-        }
-        .containerBottom {
+          width: 95%;
+          height: 35px;
+          margin-left: 2%;
+          font-size: @font-size-large-xx;
         }
       }
     }
+    .contentBottom {
 
-    .hideModal {
-      display: none;
     }
-
-  }
-
-  .upTop {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 50%;
-    display: none;
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    z-index: 999999;
-    background-color: @color-background-d;
-    cursor: pointer;
-    color: @color-white;
-    i {
-      font-size: @font-size-large-xxx;
-    }
-
-  }
-
-  .container {
-    width: 100%;
-    height: 100%;
 
   }
 
@@ -865,4 +203,3 @@
 
 
 </style>
-
