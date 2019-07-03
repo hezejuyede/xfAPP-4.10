@@ -133,7 +133,7 @@
 
       //改变数据瞬间显示数据
       loadingShowData(data) {
-        axios.post(" "+ URL +"/xf/getWorkScheduleList", ({ "time": data}))
+        axios.post(" "+ URL +"/node/getWorkScheduleList", ({ "time": data}))
           .then((res)=>{
             if(res.data.state==="1"){
               if(res.data.data.length>0){
