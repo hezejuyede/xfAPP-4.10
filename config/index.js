@@ -32,11 +32,11 @@ module.exports = {
           '/node': ''
         }
       },
-      '/asp':{
-        target: 'http://47.98.220.131:6666',
+      '/Station':{
+        target: 'http://47.98.220.131:8086',
         changeOrigin: true,
         pathRewrite: {
-          '/asp': ''
+          '/Station': ''
         }
       }
     },

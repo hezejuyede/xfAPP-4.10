@@ -1,4 +1,4 @@
-const realTimeUrl ="http://47.98.220.131:6666";
+const realTimeUrl ="http://47.98.220.131:8086";
 
 /*const realTimeUrl ="";*/
 

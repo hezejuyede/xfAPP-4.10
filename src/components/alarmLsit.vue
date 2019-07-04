@@ -116,7 +116,7 @@
 
       //改变数据瞬间显示数据
       loadingShowData() {
-        axios.post(" " + otherUrl + "/asp/showTableData")
+        axios.post(" " + otherUrl + "/Station/showTableData")
           .then((res) => {
             if(res.data.state==="1"){
               if(res.data.data.length>0){
