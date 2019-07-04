@@ -118,16 +118,16 @@
       loadingShowData() {
         axios.post(" " + otherUrl + "/Station/showTableData")
           .then((res) => {
-            if(res.data.state==="1"){
-              if(res.data.data.length>0){
-               this.tableData = res.data.data;
+            if (res.data.code === 1) {
+              if (res.data.data.length > 0) {
+                this.tableData = res.data.data;
               }
               else {
                 this.$message.warning("暂无数据");
               }
             }
             else {
-              this.$message.warning(res.data.message);
+              this.$message.warning(res.data.msg);
             }
           })
           .catch((err) => {
