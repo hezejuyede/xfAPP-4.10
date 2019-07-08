@@ -10,6 +10,8 @@ import ReportForm from '../components/reportForm'
 import PDIDiagram from '../components/PDIDiagram'
 import AlarmList from '../components/alarmLsit'
 import workSchedule from '../components/workSchedule.vue'
+import Announcement from '../components/Announcement'
+import editorialShift from '../components/editorialShift'
 
 Vue.use(Router)
 
@@ -54,6 +56,18 @@ export default new Router({
       path: '/workSchedule',
       name: 'workSchedule',
       component: workSchedule
+    }
+    ,
+    {
+      path: '/Announcement',
+      name: 'Announcement',
+      component: Announcement
+    }
+    ,
+    {
+      path: '/editorialShift',
+      name: 'editorialShift',
+      component: editorialShift
     }
   ]
 })

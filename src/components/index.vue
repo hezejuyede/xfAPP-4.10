@@ -34,7 +34,11 @@
         </div>
       </div>
       <div class="navigation clearfix" ref="navigation">
-        <div class="IconTemplate" v-for="(item , index) in iconData" @click="goToPage(index,item.url)">
+        <div class="IconTemplate" v-if="amdInfo==='2'" v-for="(item , index) in admIconData" @click="goToPage(index,item.url)">
+          <i :class=" item.icon"></i>
+          <span>{{item.text}}</span>
+        </div>
+        <div class="IconTemplate" v-if="amdInfo==='1'" v-for="(item , index) in iconData" @click="goToPage(index,item.url)">
           <i :class=" item.icon"></i>
           <span>{{item.text}}</span>
         </div>
@@ -81,6 +85,7 @@
     data() {
       return {
         img: '',
+        amdInfo:"1",
         iconData: [
           {"icon": "iconfont icon-1jituan", "text": "兴发集团", "url": "https://www.xingfagroup.com"},
           {"icon": "iconfont icon-zu", "text": "片碱报表", "url": "/ReportForm"},
@@ -89,6 +94,17 @@
           {"icon": "iconfont icon-huaxue", "text": "片碱实时", "url": "/RealTimeData"},
           {"icon": "iconfont icon-huaxue1", "text": "漂粉精一线实时", "url": "/RealTimeData"},
           {"icon": "iconfont icon-huaxueyongpin", "text": "漂粉精二线实时", "url": "/RealTimeData"}
+        ],
+        admIconData: [
+          {"icon": "iconfont icon-1jituan", "text": "兴发集团", "url": "https://www.xingfagroup.com"},
+          {"icon": "iconfont icon-zu", "text": "片碱报表", "url": "/ReportForm"},
+          {"icon": "iconfont icon-gaoduanhuagong", "text": "漂粉精一线报表", "url": "/ReportForm"},
+          {"icon": "iconfont icon-jichuhuagong", "text": "漂粉精二线报表", "url": "/ReportForm"},
+          {"icon": "iconfont icon-huaxue", "text": "片碱实时", "url": "/RealTimeData"},
+          {"icon": "iconfont icon-huaxue1", "text": "漂粉精一线实时", "url": "/RealTimeData"},
+          {"icon": "iconfont icon-huaxueyongpin", "text": "漂粉精二线实时", "url": "/RealTimeData"},
+          {"icon": "iconfont icon-gonggao", "text": "发布公告", "url": "/Announcement"},
+          /*{"icon": "iconfont icon-renyuan", "text": "编辑班次", "url": "/editorialShift"}*/
         ],
         bannerImg: [
           {"img": require("../assets/img/1.jpg")},
@@ -135,6 +151,14 @@
           this.$router.push("/UserLogin")
         }
         else {
+          let Info = JSON.parse(userInfo);
+          let username = Info.username;
+          if(username==="11"){
+            this.amdInfo="2"
+          }
+          else {
+            this.amdInfo="1"
+          }
           this.getMessageList();
 
 
@@ -473,6 +497,28 @@
         .icon-huaxueyongpin {
           display: block;
           background-color:@color-bg-cs;
+          color: @color-white;
+          border-radius: 20%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
+          text-align: center;
+        }
+        .icon-gonggao{
+          display: block;
+          background-color:@color-bg-anLv;
+          color: @color-white;
+          border-radius: 20%;
+          width: 70px;
+          height:70px;
+          line-height: 70px;
+          font-size: 350%;
+          text-align: center;
+        }
+        .icon-renyuan{
+          display: block;
+          background-color:@color-background;
           color: @color-white;
           border-radius: 20%;
           width: 70px;

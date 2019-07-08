@@ -21,7 +21,13 @@
             fixed
             width="130"
             prop="tagName"
-            label="名称">
+            label="测点名">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            width="150"
+            prop="chineseTagName"
+            label="中文测点名">
           </el-table-column>
           <el-table-column
             align="center"
